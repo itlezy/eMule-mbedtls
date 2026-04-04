@@ -1,6 +1,8 @@
 [submodule "framework"]
 	path = framework
-	url = https://github.com/Mbed-TLS/mbedtls-framework
+	url = https://github.com/itlezy/mbedtls-framework.git
+	branch = emule-build-v0.72a
 [submodule "tf-psa-crypto"]
 	path = tf-psa-crypto
-	url = https://github.com/Mbed-TLS/TF-PSA-Crypto.git
+	url = https://github.com/itlezy/TF-PSA-Crypto.git
+	branch = emule-build-v0.72a
