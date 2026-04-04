@@ -50,6 +50,7 @@ massif-*
 /visualc/VS2010/Release/
 /visualc/VS2010/*.vcxproj.filters
 /visualc/VS2010/*.vcxproj.user
+/visualc/VS2017/
 
 # Generated documentation:
 /apidoc
