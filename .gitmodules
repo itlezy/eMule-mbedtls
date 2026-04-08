@@ -3,4 +3,5 @@
 	url = https://github.com/Mbed-TLS/mbedtls-framework
 [submodule "tf-psa-crypto"]
 	path = tf-psa-crypto
-	url = https://github.com/Mbed-TLS/TF-PSA-Crypto.git
+	url = https://github.com/itlezy/eMule-TF-PSA-Crypto.git
+	branch = tf-psa-crypto-v1.1.0-emule
