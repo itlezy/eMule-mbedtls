@@ -75,10 +75,8 @@
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>"$(WorkspaceCMakeExe)" --build "$(MSBuildProjectDirectory)-$(Platform)" --config Debug --target ALL_BUILD
-IF %ERRORLEVEL% NEQ 0 EXIT /B %ERRORLEVEL%
-if not exist "$(OutDir)" mkdir "$(OutDir)"
-lib.exe /nologo /OUT:"$(OutDir)mbedtls.lib" "$(MSBuildProjectDirectory)-$(Platform)\library\Debug\mbedtls.lib" "$(MSBuildProjectDirectory)-$(Platform)\library\Debug\mbedx509.lib" "$(MSBuildProjectDirectory)-$(Platform)\tf-psa-crypto\core\Debug\tfpsacrypto.lib" "$(MSBuildProjectDirectory)-$(Platform)\tf-psa-crypto\drivers\builtin\builtin.dir\Debug\builtin.lib" "$(MSBuildProjectDirectory)-$(Platform)\tf-psa-crypto\drivers\everest\everest.dir\Debug\everest.lib" "$(MSBuildProjectDirectory)-$(Platform)\tf-psa-crypto\drivers\p256-m\p256-m.dir\Debug\p256-m.lib"</Command>
-      <Message>Combining mbedTLS component libs -&gt; $(OutDir)mbedtls.lib</Message>
+IF %ERRORLEVEL% NEQ 0 EXIT /B %ERRORLEVEL%</Command>
+      <Message>Building Mbed TLS component libs for $(Platform)|Debug</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
@@ -88,10 +86,8 @@ lib.exe /nologo /OUT:"$(OutDir)mbedtls.lib" "$(MSBuildProjectDirectory)-$(Platfo
     </PreBuildEvent>
     <PostBuildEvent>
       <Command>"$(WorkspaceCMakeExe)" --build "$(MSBuildProjectDirectory)-$(Platform)" --config Release --target ALL_BUILD
-IF %ERRORLEVEL% NEQ 0 EXIT /B %ERRORLEVEL%
-if not exist "$(OutDir)" mkdir "$(OutDir)"
-lib.exe /nologo /OUT:"$(OutDir)mbedtls.lib" "$(MSBuildProjectDirectory)-$(Platform)\library\Release\mbedtls.lib" "$(MSBuildProjectDirectory)-$(Platform)\library\Release\mbedx509.lib" "$(MSBuildProjectDirectory)-$(Platform)\tf-psa-crypto\core\Release\tfpsacrypto.lib" "$(MSBuildProjectDirectory)-$(Platform)\tf-psa-crypto\drivers\builtin\builtin.dir\Release\builtin.lib" "$(MSBuildProjectDirectory)-$(Platform)\tf-psa-crypto\drivers\everest\everest.dir\Release\everest.lib" "$(MSBuildProjectDirectory)-$(Platform)\tf-psa-crypto\drivers\p256-m\p256-m.dir\Release\p256-m.lib"</Command>
-      <Message>Combining mbedTLS component libs -&gt; $(OutDir)mbedtls.lib</Message>
+IF %ERRORLEVEL% NEQ 0 EXIT /B %ERRORLEVEL%</Command>
+      <Message>Building Mbed TLS component libs for $(Platform)|Release</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
