@@ -56,6 +56,9 @@
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <WorkspaceCMakeExe Condition="'$(WorkspaceCMakeExe)'=='' and Exists('$(VSInstallDir)Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe')">$(VSInstallDir)Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe</WorkspaceCMakeExe>
     <WorkspaceCMakeExe Condition="'$(WorkspaceCMakeExe)'==''">cmake</WorkspaceCMakeExe>
+    <WorkspaceCMakeGenerator Condition="'$(WorkspaceCMakeGenerator)'=='' and '$(EMULEBB_CMAKE_GENERATOR)'!=''">$(EMULEBB_CMAKE_GENERATOR)</WorkspaceCMakeGenerator>
+    <WorkspaceCMakeGenerator Condition="'$(WorkspaceCMakeGenerator)'==''">Visual Studio 17 2022</WorkspaceCMakeGenerator>
+    <WorkspaceCMakeToolsetArgument Condition="'$(WorkspaceCMakeToolsetArgument)'=='' and '$(PlatformToolset)'!=''">-T $(PlatformToolset)</WorkspaceCMakeToolsetArgument>
     <WorkspacePerlExe Condition="'$(WorkspacePerlExe)'=='' and Exists('C:\Program Files\Git\usr\bin\perl.exe')">C:\Program Files\Git\usr\bin\perl.exe</WorkspacePerlExe>
     <WorkspacePerlExe Condition="'$(WorkspacePerlExe)'=='' and Exists('C:\Program Files (x86)\Git\usr\bin\perl.exe')">C:\Program Files (x86)\Git\usr\bin\perl.exe</WorkspacePerlExe>
     <WorkspacePerlExe Condition="'$(WorkspacePerlExe)'==''">perl</WorkspacePerlExe>
@@ -70,7 +73,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <PreBuildEvent>
-      <Command>IF NOT EXIST "$(MSBuildProjectDirectory)-$(Platform)\CMakeCache.txt" "$(WorkspaceCMakeExe)" -S "$(MSBuildProjectDirectory)\..\.." -B "$(MSBuildProjectDirectory)-$(Platform)" -G "Visual Studio 17 2022" -A $(Platform) -DENABLE_PROGRAMS=OFF -DENABLE_TESTING=OFF -DGEN_FILES=ON "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" -DCMAKE_POLICY_DEFAULT_CMP0091=NEW "-DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded$&lt;$&lt;CONFIG:Debug&gt;:Debug&gt;" "-DPERL_EXECUTABLE=$(WorkspacePerlExe)"</Command>
+      <Command>IF NOT EXIST "$(MSBuildProjectDirectory)-$(Platform)\CMakeCache.txt" "$(WorkspaceCMakeExe)" -S "$(MSBuildProjectDirectory)\..\.." -B "$(MSBuildProjectDirectory)-$(Platform)" -G "$(WorkspaceCMakeGenerator)" -A $(Platform) $(WorkspaceCMakeToolsetArgument) -DENABLE_PROGRAMS=OFF -DENABLE_TESTING=OFF -DGEN_FILES=ON "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" -DCMAKE_POLICY_DEFAULT_CMP0091=NEW "-DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded$&lt;$&lt;CONFIG:Debug&gt;:Debug&gt;" "-DPERL_EXECUTABLE=$(WorkspacePerlExe)"</Command>
       <Message>Configuring Mbed TLS with cmake for $(Platform) (if not already configured)</Message>
     </PreBuildEvent>
     <PostBuildEvent>
@@ -81,7 +84,7 @@ IF %ERRORLEVEL% NEQ 0 EXIT /B %ERRORLEVEL%</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <PreBuildEvent>
-      <Command>IF NOT EXIST "$(MSBuildProjectDirectory)-$(Platform)\CMakeCache.txt" "$(WorkspaceCMakeExe)" -S "$(MSBuildProjectDirectory)\..\.." -B "$(MSBuildProjectDirectory)-$(Platform)" -G "Visual Studio 17 2022" -A $(Platform) -DENABLE_PROGRAMS=OFF -DENABLE_TESTING=OFF -DGEN_FILES=ON "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" -DCMAKE_POLICY_DEFAULT_CMP0091=NEW "-DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded$&lt;$&lt;CONFIG:Debug&gt;:Debug&gt;" "-DPERL_EXECUTABLE=$(WorkspacePerlExe)"</Command>
+      <Command>IF NOT EXIST "$(MSBuildProjectDirectory)-$(Platform)\CMakeCache.txt" "$(WorkspaceCMakeExe)" -S "$(MSBuildProjectDirectory)\..\.." -B "$(MSBuildProjectDirectory)-$(Platform)" -G "$(WorkspaceCMakeGenerator)" -A $(Platform) $(WorkspaceCMakeToolsetArgument) -DENABLE_PROGRAMS=OFF -DENABLE_TESTING=OFF -DGEN_FILES=ON "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" -DCMAKE_POLICY_DEFAULT_CMP0091=NEW "-DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded$&lt;$&lt;CONFIG:Debug&gt;:Debug&gt;" "-DPERL_EXECUTABLE=$(WorkspacePerlExe)"</Command>
       <Message>Configuring Mbed TLS with cmake for $(Platform) (if not already configured)</Message>
     </PreBuildEvent>
     <PostBuildEvent>
